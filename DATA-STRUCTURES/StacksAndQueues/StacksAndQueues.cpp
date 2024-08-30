@@ -28,6 +28,12 @@ void addStack(Stack* &top, int n){
 	top = newS;
 }
 
+void deleteStack(Stack* &top){
+	Stack* aux = top;
+	top = aux->nxt;
+	delete aux;
+}
+
 //Queue Functions
 
 void initQueue(){
@@ -39,7 +45,7 @@ int main(){
 	Queue* front=NULL;
 	Queue* rear=NULL;
 	
-	int op, n, sz=10;
+	int op, n, sz;
 	bool cond = true;
 	
 	while(cond){
@@ -79,12 +85,23 @@ int main(){
 					sz-=1;
 					
 				}else{
-					cout<<"The stack is full. Delete an item and try again. \n";
+					cout<<"The stack is full. Delete a node and try again. \n";
 					}		
 				}
-				
-				
 			break;
+			
+			case 2:
+				if(sz==10){
+					cout<<"The stack is empty. Add a node and try again. \n";
+				}else{
+				n = top->n;
+				deleteStack(top);
+				cout<<"The value of the deleted node is: "<<n<<endl;
+				}
+			break;
+			
+			case 3:
+				
 			
 			case 5:
 				cout<<"The number in the top is: "<<top->n<<endl;
